@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog
+		id="mySelectDialog"
+		noDataText="No matching Emails Found"
+		title="Associated Emails"
+		search=".onSearch"
+		confirm=".onDialogClose"
+		cancel=".onDialogClose"
+		items="{
+			path: 'msData>/value'
+		}">
+		<FeedListItem
+            sender="{msData>sender/emailAddress/address} + {msData>sender/emailAddress/name}"
+            icon="sap-icon://email-read"
+            senderPress="onOpenEmail"
+            iconPress="onOpenEmail"
+            iconDensityAware="false"
+            info="{Type}"
+            timestamp="{ path : 'msData>createdDateTime', type : 'sap.ui.model.type.DateTime', formatOptions : { source : { UTC: true, pattern : 'yyyy-MM-dd\'T\'hh\':\'mm\':\'ss\'Z\'' }, style: 'full', relative: true } }"
+            text="{msData>bodyPreview}"
+            convertLinksToAnchorTags="All">
+        </FeedListItem>
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,82 @@
+<mvc:View
+	controllerName="azure.graph.example.msgraphui.controller.Object"
+	xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout" 
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic">
+
+	<semantic:SemanticPage
+		id="page"
+		headerPinnable="false"
+		toggleHeaderOnTitleClick="false"
+		busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+
+        <semantic:titleHeading>
+            <Title
+				text="{i18n>objectTitle}"
+				level="H2"/>
+		</semantic:titleHeading>
+
+		<f:SimpleForm columnsM="1" title="Purchase Order Details {POId}" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+            <f:content>
+                <Label text="Image" width="100%">
+                    <layoutData>
+                        <layout:GridData span="L4 M4"/>
+                    </layoutData>
+                </Label>
+                <Label text="Purchase Oder ID" width="100%">
+                    <layoutData>
+                        <layout:GridData span="L4 M4"/>
+                    </layoutData>
+                </Label>
+
+                <Link press="_openQuickView" enabled="{= !!${session>/givenName} }" text="{POId}"/>
+                <Label text="Supplier Name">
+                    <layoutData>
+                        <layout:GridData span="L4 M4"/>
+                    </layoutData>
+                </Label>
+                <Link press="_openQuickView" enabled="{= !!${session>/givenName} }" text="{SupplierName}"/>
+                <Label text="Ordered By">
+                    <layoutData>
+                        <layout:GridData span="L4 M4"/>
+                    </layoutData>
+                </Label>
+                <Link press="_openQuickView" enabled="{= !!${session>/givenName} }" text="{OrderedByName}"/>
+                <Label text="Delivery Address">
+                    <layoutData>
+                        <layout:GridData span="L4 M4"/>
+                    </layoutData>
+                </Label>
+                <Link press="_openQuickView" enabled="{= !!${session>/givenName} }" text="{DeliveryAddress}"/>
+                <Label text="GrossAmount">
+                    <layoutData>
+                        <layout:GridData span="L4 M4"/>
+                    </layoutData>
+                </Label>
+                <Text text="{GrossAmount}"/>
+                <Label text="CurrencyCode">
+                    <layoutData>
+                        <layout:GridData span="L4 M4"/>
+                    </layoutData>
+                </Label>
+                <Text text="{CurrencyCode}"/>
+                <Label text="Items">
+                    <layoutData>
+                        <layout:GridData span="L4 M4"/>
+                    </layoutData>
+                </Label>
+                <Text text="{ItemCount}"/>
+                <Label text="Earliest Delivery">
+                    <layoutData>
+                        <layout:GridData span="L4 M4"/>
+                    </layoutData>
+                </Label>
+                <Link press="_openQuickView" enabled="{= !!${session>/givenName} }" text="{DeliveryDateEarliest}"/>
+            </f:content>
+        </f:SimpleForm>
+	</semantic:SemanticPage>
+
+</mvc:View>

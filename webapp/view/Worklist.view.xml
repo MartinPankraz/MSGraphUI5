@@ -1,0 +1,95 @@
+<mvc:View
+	controllerName="azure.graph.example.msgraphui.controller.Worklist"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic">
+
+	<semantic:SemanticPage
+		id="page"
+		headerPinnable="false"
+		toggleHeaderOnTitleClick="false">
+
+		<semantic:titleHeading>
+			<Title
+				text="{i18n>worklistTitle}"
+				level="H2"/>
+		</semantic:titleHeading>
+
+		<semantic:content>
+			<Table
+				id="table"
+				width="auto"
+				items="{
+					path: '/PurchaseOrders',
+					sorter: {
+						path: 'POId',
+						descending: false
+					}
+				}"
+				noDataText="{worklistView>/tableNoDataText}"
+				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished=".onUpdateFinished">
+
+				<headerToolbar>
+					<OverflowToolbar>
+						<Title
+							id="tableHeader"
+							text="{worklistView>/worklistTableTitle}"
+							level="H3"/>
+                        <Button icon="sap-icon://refresh" press="onRefresh"/>
+						<ToolbarSpacer />
+						<SearchField
+							id="searchField"
+							tooltip="{i18n>worklistSearchTooltip}"
+							search=".onSearch">
+							<layoutData>
+								<OverflowToolbarLayoutData
+									maxWidth="200px"
+									priority="NeverOverflow"/>
+							</layoutData>
+						</SearchField>
+                        <Button icon="sap-icon://person-placeholder" text="Logout" visible="{= !!${session>/userPrincipalName} }" press="onLogout"/>
+					</OverflowToolbar>
+				</headerToolbar>
+
+				<columns>
+					<Column id="nameColumn">
+						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					</Column>
+                    <Column id="unitAmountColumn" hAlign="End">
+						<Text text="{i18n>tableUnitAmountColumnTitle}" id="unitAmountColumnTitle"/>
+					</Column>
+                    <Column id="nameColumnSupplier" hAlign="End">
+						<Text text="{i18n>tableSupplierColumnTitle}" id="supplierColumnTitle"/>
+					</Column>
+					<Column id="unitNumberColumn" hAlign="End">
+						<Text text="{i18n>tableUnitNumberColumnTitle}" id="unitNumberColumnTitle"/>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem
+						type="Navigation"
+						press=".onPress">
+						<cells>
+							<ObjectIdentifier
+								title="{POId}"/>
+                            <ObjectNumber
+								number="{
+									path: 'GrossAmount',
+									formatter: '.formatter.numberUnit'
+								}"
+								unit="{CurrencyCode}"/>
+                            <Text text="{SupplierName}" />
+							<ObjectNumber
+								number="{ItemCount}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+	</semantic:SemanticPage>
+
+</mvc:View>

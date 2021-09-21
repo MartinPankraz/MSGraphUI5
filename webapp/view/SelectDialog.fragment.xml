@@ -5,14 +5,11 @@
 		id="mySelectDialog"
 		noDataText="No matching Emails Found"
 		title="Associated Emails"
-		search=".onSearch"
-		confirm=".onDialogClose"
-		cancel=".onDialogClose"
 		items="{
 			path: 'msData>/value'
 		}">
 		<FeedListItem
-            sender="{msData>sender/emailAddress/address} + {msData>sender/emailAddress/name}"
+            sender="{msData>subject} from {msData>sender/emailAddress/name} ({msData>sender/emailAddress/address})"
             icon="sap-icon://email-read"
             senderPress="onOpenEmail"
             iconPress="onOpenEmail"

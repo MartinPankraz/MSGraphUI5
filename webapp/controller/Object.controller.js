@@ -49,7 +49,7 @@ sap.ui.define([
             
             this.getView().addEventDelegate({
                 onBeforeShow: function(event) {
-                that.myMSALAccessToken = this.getView().data("data");
+                    that.myMSALAccessToken = this.getView().data("data");
                 }
             }, this);
 		},
@@ -152,6 +152,16 @@ sap.ui.define([
 			oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
 			oViewModel.setProperty("/shareSendEmailMessage",
 			oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
+        },
+        _getDialog : function () {
+            // create dialog lazily
+            if (!this._oDialog) {
+                // create dialog via fragment factory
+                this._oDialog = sap.ui.xmlfragment("sap.ui.demo.wt.view.HelloDialog", this);
+                // connect dialog to view (models, lifecycle)
+                this.getView().addDependent(this._oDialog);
+            }
+            return this._oDialog;
         },
         _openQuickView: function (oEvent) {
             var sLinkText = oEvent.getSource().getText(),

@@ -20,7 +20,7 @@ sap.ui.define([
         config: {
             msalConfig: {
                 auth: {
-                    clientId: "4c926b42-5773-4476-b792-1d815be26dcd"
+                    clientId: "<<your AAD app registration client id>>"
                 },
                 cache: {
                     cacheLocation: 'localStorage',

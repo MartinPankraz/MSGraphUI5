@@ -7,7 +7,7 @@
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Floorplan Used**<br>1worklist|
 |**Service Type**<br>SAP System (ABAP On Premise)|
-|**Service URL**<br>https://sapes5.sapdevcenter.com//sap/opu/odata/sap/SEPMRA_PO_APV
+|**Service URL**<br>https://sapes5.sapdevcenter.com/sap/opu/odata/sap/SEPMRA_PO_APV
 |**Module Name**<br>ms-graph-ui|
 |**Application Title**<br>Fiori MS Graph Integration|
 |**Namespace**<br>azure.graph.example|
